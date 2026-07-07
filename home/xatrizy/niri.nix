@@ -14,6 +14,6 @@
     recursive = true;
   };
 
-  imports = [ inputs.dms.homeManagerModules.default ]; # verify output name against current DMS flake
-  programs.dankMaterialShell.enable = true; # verify option name against current DMS docs
+  imports = [ inputs.dms.homeModules.default ];
+  programs.dank-material-shell.enable = true;
 }
