@@ -20,7 +20,10 @@ in
   # which is redundant; latest stable kernel covers the 9900X/7900XTX fine.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.plymouth.enable = true;
+  # Hangs indefinitely at "Show Plymouth Boot Screen" in this VM (VirtualBox's
+  # display doesn't give it a usable framebuffer), blocking the rest of boot
+  # entirely - purely cosmetic, safe to skip for VM testing.
+  boot.plymouth.enable = !vars.isVM;
 
   zramSwap.enable = true;
 }
