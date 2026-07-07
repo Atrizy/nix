@@ -4,17 +4,17 @@ let
   vars = import ../hosts/archbox/variables.nix;
 in
 {
-  # grub-install fails on VirtualBox's virtual SATA/EFI emulation ("Inappropriate
-  # ioctl for device") - systemd-boot sidesteps it entirely and os-prober dual-boot
-  # detection is irrelevant in a VM anyway.
-  boot.loader.systemd-boot.enable = vars.isVM;
+  # VM (VirtualBox, this test) boots legacy BIOS - no ESP exists at all, so both
+  # EFI GRUB and systemd-boot (UEFI-only) fail outright. Install GRUB straight to
+  # the MBR instead. Real hardware boots UEFI, keeps the original EFI GRUB setup.
+  boot.loader.systemd-boot.enable = false;
   boot.loader.grub = {
-    enable = !vars.isVM;
-    efiSupport = true;
-    device = "nodev";
-    useOSProber = true; # dual-boot Windows detection - real hardware only
+    enable = true;
+    efiSupport = !vars.isVM;
+    device = if vars.isVM then "/dev/sda" else "nodev";
+    useOSProber = !vars.isVM; # dual-boot Windows detection - real hardware only
   };
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = !vars.isVM;
 
   # Single pinned kernel - CachyOS ran both linux-cachyos and linux-cachyos-lts,
   # which is redundant; latest stable kernel covers the 9900X/7900XTX fine.
