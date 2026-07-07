@@ -1,7 +1,13 @@
 { config, pkgs, lib, ... }:
 
+let
+  vars = import ../hosts/archbox/variables.nix;
+in
 {
-  services.snapper.configs.root = {
+  # Snapper requires a real btrfs subvolume - this VM's disk is plain ext4
+  # (snapper-cleanup.service fails with "subvolume is not a btrfs subvolume"
+  # otherwise). Real hardware uses the intended btrfs @ layout.
+  services.snapper.configs.root = lib.mkIf (!vars.isVM) {
     SUBVOLUME = "/";
     ALLOW_USERS = [ "xatrizy" ];
     TIMELINE_CREATE = true;
