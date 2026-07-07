@@ -1,12 +1,18 @@
 { config, pkgs, lib, ... }:
 
+let
+  vars = import ../hosts/archbox/variables.nix;
+in
 {
-  boot.loader.systemd-boot.enable = false;
+  # grub-install fails on VirtualBox's virtual SATA/EFI emulation ("Inappropriate
+  # ioctl for device") - systemd-boot sidesteps it entirely and os-prober dual-boot
+  # detection is irrelevant in a VM anyway.
+  boot.loader.systemd-boot.enable = vars.isVM;
   boot.loader.grub = {
-    enable = true;
+    enable = !vars.isVM;
     efiSupport = true;
     device = "nodev";
-    useOSProber = true; # dual-boot Windows detection - real hardware only, no-op in VM
+    useOSProber = true; # dual-boot Windows detection - real hardware only
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
