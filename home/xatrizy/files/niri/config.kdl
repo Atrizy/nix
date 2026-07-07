@@ -1,0 +1,42 @@
+include "./cfg/animation.kdl"
+include "./cfg/autostart.kdl"
+include "./cfg/keybinds.kdl"
+include "./cfg/input.kdl"
+include "./cfg/display.kdl"
+include "./cfg/layout.kdl"
+include "./cfg/rules.kdl"
+include "./cfg/misc.kdl"
+
+xwayland-satellite {
+    path "xwayland-satellite"
+}
+
+// LEFT: ASUS VG27AQ3A (DP-1)
+output "ASUSTek COMPUTER INC VG27AQ3A T1LMAS003357" {
+    mode "2560x1440@180.001"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}
+
+// CENTER: Samsung Odyssey G60SD (DP-3)
+output "Samsung Electric Company Odyssey G60SD HNAX901662" {
+    mode "2560x1440@359.999"
+    scale 1
+    transform "normal"
+    position x=2560 y=0
+    focus-at-startup
+}
+
+// RIGHT: Samsung Odyssey G50A (HDMI-A-1)
+output "Samsung Electric Company Odyssey G50A H4ZT600842" {
+    mode "2560x1440@144.000"
+    scale 1
+    transform "normal"
+    position x=5120 y=0
+}
+include "dms/binds.kdl"
+
+include "dms/cursor.kdl"
+
+include "dms/outputs.kdl"

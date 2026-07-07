@@ -1,0 +1,24 @@
+layout {
+gaps 10
+center-focused-column "never"
+
+background-color "#050506"
+
+focus-ring {
+width 2
+active-color "#e5393f"
+inactive-color "#5a0a17"
+}
+
+border {
+off
+}
+
+preset-column-widths {
+proportion 0.33333
+proportion 0.5
+proportion 0.66667
+}
+
+struts {}
+}

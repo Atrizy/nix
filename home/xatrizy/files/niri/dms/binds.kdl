@@ -1,0 +1,6 @@
+binds {
+    Super+space hotkey-overlay-title="App Launcher: Toggle" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+F hotkey-overlay-title="Fullscreen" { fullscreen-window; }
+    Mod+B hotkey-overlay-title="Open Browser: Chrome" { spawn "chromium"; }
+    Mod+Return hotkey-overlay-title="Open Terminal: Ghostty" { spawn "ghostty"; }
+}

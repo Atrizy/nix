@@ -1,0 +1,48 @@
+background = 050506
+foreground = d6d2d8
+background-opacity = 0.85
+
+cursor-color = e5393f
+cursor-text  = 050506
+cursor-style = block
+
+selection-background = 2a0f14
+selection-foreground = f7f2f8
+
+# black
+palette = 0=#08080a
+palette = 8=#1c1519
+
+# red (primary accent)
+palette = 1=#e5393f
+palette = 9=#ff5258
+
+# “green” → grey
+palette = 2=#2a2a30
+palette = 10=#3a3a42
+
+# “yellow” → grey
+palette = 3=#e5393f
+palette = 11=#ff5258
+
+# “blue” → grey
+palette = 4=#3f3f46
+palette = 12=#4c4c54
+
+# “purple” → grey
+palette = 5=#44444c
+palette = 13=#55555f
+
+# “aqua” → grey
+palette = 6=#484850
+palette = 14=#5e5e68
+
+# white
+palette = 7=#d6d2d8
+palette = 15=#ffffff
+
+font-family = Intone Mono Nerd Font
+font-size   = 12
+
+window-padding-x = 10
+window-padding-y = 10
