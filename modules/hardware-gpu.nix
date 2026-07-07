@@ -1,16 +1,17 @@
 { config, pkgs, lib, ... }:
 
 # AMD Radeon RX 7900 XTX (Navi 31) + Ryzen 9 9900X.
-# Inert on the VM (no real amdgpu device to bind to) but should evaluate cleanly;
-# becomes meaningful once run on real hardware.
+let
+  vars = import ../hosts/archbox/variables.nix;
+in
 {
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = lib.mkIf (!vars.isVM) [ "amdgpu" ];
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # needed for Steam/Proton
-    extraPackages = [ pkgs.rocmPackages.clr.icd ]; # ROCm OpenCL userspace for the 7900 XTX
+    extraPackages = lib.mkIf (!vars.isVM) [ pkgs.rocmPackages.clr.icd ]; # ROCm OpenCL userspace for the 7900 XTX
   };
 
-  hardware.cpu.amd.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = !vars.isVM;
 }
