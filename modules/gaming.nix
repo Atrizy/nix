@@ -14,7 +14,7 @@
     enable = true;
     capSysAdmin = true; # needed for Wayland DRM/KMS capture under niri
     openFirewall = true;
-    autoStart = false; # verify option name against current nixpkgs docs - goal is "systemctl start sunshine" on demand, not boot-enabled
+    autoStart = false; # goal is "systemctl start sunshine" on demand, not boot-enabled
   };
 
   # playit-bin (game tunnel) dropped entirely, not used.

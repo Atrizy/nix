@@ -9,11 +9,8 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # needed for Steam/Proton
+    extraPackages = [ pkgs.rocmPackages.clr.icd ]; # ROCm OpenCL userspace for the 7900 XTX
   };
 
   hardware.cpu.amd.updateMicrocode = true;
-
-  # ROCm/OpenCL userspace for the 7900 XTX (used by ollama-rocm below).
-  # verify against current nixpkgs docs - option name/shape has moved across releases
-  hardware.amdgpu.opencl.enable = true;
 }
